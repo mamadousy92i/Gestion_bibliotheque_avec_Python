@@ -1,0 +1,6 @@
+--- NOTIFICATION DE DISPONIBILITÉ ---
+Date : 2026-01-04
+Utilisateur : Professeur Tournesol (ID: ENS-3)
+Livre disponible : Le Petit Manuel du Testeur (ISBN: 4444)
+Action : Merci de passer à la bibliothèque pour récupérer votre exemplaire.
+----------------------------------------

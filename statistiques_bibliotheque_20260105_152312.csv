@@ -1,0 +1,21 @@
+--- RESUME GLOBAL ---
+Indicateur,Valeur
+Total Livres,8
+Total Exemplaires,9
+Exemplaires Disponibles,7
+
+--- EXEMPLAIRES PAR STATUT ---
+Statut,Nombre
+disponible,7
+emprunté,1
+réservé,1
+perdu,0
+endommagé,0
+
+--- TOP 5 LIVRES LES PLUS EMPRUNTES ---
+Titre,ISBN,Nombre d'emprunts
+TEST LIVRE,1123,1
+Le Petit Manuel du Testeur,4444,1
+L'Étranger,1001,0
+Le Petit Prince,1002,0
+Germinal,1003,0

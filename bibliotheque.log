@@ -1,0 +1,14 @@
+[2026-01-04 18:55:19] - CATALOGUE : Ajout du livre TEST LIVRE (ISBN: 123)
+[2026-01-04 18:56:29] - UTILISATEUR : Nouvel utilisateur inscrit : SY MAMADOU (ID: ETU-1, Type: ETUDIANT)
+[2026-01-04 18:59:20] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-1 pour le livre TEST LIVRE
+[2026-01-04 19:00:46] - EMPRUNT : L'utilisateur ETU-1 a pris l'exemplaire EX001-1
+[2026-01-04 19:11:02] - UTILISATEUR : Nouvel utilisateur inscrit : Alice Test (ID: ETU-2, Type: ETUDIANT)
+[2026-01-04 19:11:02] - UTILISATEUR : Nouvel utilisateur inscrit : Professeur Tournesol (ID: ENS-3, Type: ENSEIGNANT)
+[2026-01-04 19:11:02] - CATALOGUE : Ajout du livre Le Petit Manuel du Testeur (ISBN: 4444)
+[2026-01-04 19:11:02] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-7 pour le livre Le Petit Manuel du Testeur
+[2026-01-04 19:11:02] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-8 pour le livre Le Petit Manuel du Testeur
+[2026-01-04 19:11:02] - EMPRUNT : L'utilisateur ETU-2 a pris l'exemplaire EX001-7
+[2026-01-04 19:11:02] - RESERVATION : L'utilisateur ENS-3 a réservé le livre ISBN: 4444
+[2026-01-04 19:11:02] - RETOUR : Retour de l'emprunt ID: EMP-2
+[2026-01-04 19:16:17] - CATALOGUE : Ajout du livre LUCIFER (ISBN: 1234)
+[2026-01-04 19:16:23] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-9 pour le livre LUCIFER

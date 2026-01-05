@@ -1,0 +1,193 @@
+{
+    "catalogue": {
+        "1123": {
+            "isbn": "1123",
+            "titre": "TEST LIVRE",
+            "auteur": "SY",
+            "anne_publication": 2025,
+            "categorie": "ROMAN",
+            "statut": "disponible",
+            "nb_emprunts_total": 1
+        },
+        "1001": {
+            "isbn": "1001",
+            "titre": "L'Étranger",
+            "auteur": "Albert Camus",
+            "anne_publication": 1942,
+            "categorie": "Classique",
+            "statut": "disponible",
+            "nb_emprunts_total": 0
+        },
+        "1002": {
+            "isbn": "1002",
+            "titre": "Le Petit Prince",
+            "auteur": "Antoine de Saint-Exupéry",
+            "anne_publication": 1943,
+            "categorie": "Jeunesse",
+            "statut": "disponible",
+            "nb_emprunts_total": 0
+        },
+        "1003": {
+            "isbn": "1003",
+            "titre": "Germinal",
+            "auteur": "Émile Zola",
+            "anne_publication": 1885,
+            "categorie": "Classique",
+            "statut": "disponible",
+            "nb_emprunts_total": 0
+        },
+        "1004": {
+            "isbn": "1004",
+            "titre": "1984",
+            "auteur": "George Orwell",
+            "anne_publication": 1949,
+            "categorie": "Science-Fiction",
+            "statut": "disponible",
+            "nb_emprunts_total": 0
+        },
+        "1005": {
+            "isbn": "1005",
+            "titre": "Les Misérables",
+            "auteur": "Victor Hugo",
+            "anne_publication": 1862,
+            "categorie": "Classique",
+            "statut": "disponible",
+            "nb_emprunts_total": 0
+        },
+        "4444": {
+            "isbn": "4444",
+            "titre": "Le Petit Manuel du Testeur",
+            "auteur": "Alan Turing",
+            "anne_publication": 2024,
+            "categorie": "Informatique",
+            "statut": "disponible",
+            "nb_emprunts_total": 1
+        },
+        "1234": {
+            "isbn": "1234",
+            "titre": "LUCIFER",
+            "auteur": "SY MAMADOU",
+            "anne_publication": 2025,
+            "categorie": "ROMAN",
+            "statut": "disponible",
+            "nb_emprunts_total": 0
+        }
+    },
+    "utilisateurs": {
+        "ETU-1": {
+            "id_utilisateur": "ETU-1",
+            "nom": "SY MAMADOU",
+            "email": "92mamadousy@gmail.com",
+            "type_utilisateur": "ETUDIANT",
+            "niveau_etude": "LICENSE",
+            "filiere": "IA",
+            "liste_emprunt_en_cour": [
+                "EMP-1"
+            ],
+            "historique_emprunts": [],
+            "nb_emprunts_total": 1
+        },
+        "ETU-2": {
+            "id_utilisateur": "ETU-2",
+            "nom": "Alice Test",
+            "email": "alice@test.com",
+            "type_utilisateur": "ETUDIANT",
+            "niveau_etude": "L3",
+            "filiere": "IA",
+            "liste_emprunt_en_cour": [],
+            "historique_emprunts": [
+                {
+                    "id_emprunt": "EMP-2",
+                    "id_exemplaire": "EX001-7",
+                    "id_utilisateur": "ETU-2",
+                    "date_emprunt": "2026-01-04",
+                    "date_retour_prevue": "2026-01-18",
+                    "date_retour_effective": "2026-01-04",
+                    "est_actif": true
+                }
+            ],
+            "nb_emprunts_total": 1
+        },
+        "ENS-3": {
+            "id_utilisateur": "ENS-3",
+            "nom": "Professeur Tournesol",
+            "email": "tournesol@test.com",
+            "type_utilisateur": "ENSEIGNANT",
+            "departement": "Physique",
+            "liste_emprunt_en_cour": [],
+            "historique_emprunts": [],
+            "nb_emprunts_total": 0
+        },
+        "ADM-1": {
+            "id_utilisateur": "ADM-1",
+            "nom": "Administrateur",
+            "email": "admin@biblio.com",
+            "type_utilisateur": "ADMIN",
+            "service": "Direction",
+            "liste_emprunt_en_cour": [],
+            "historique_emprunts": [],
+            "nb_emprunts_total": 0
+        }
+    },
+    "exemplaires": {
+        "EX001-1": {
+            "id_exemplaire": "EX001-1",
+            "isbn_livre": "1123",
+            "statut": "emprunté"
+        },
+        "EX001-2": {
+            "id_exemplaire": "EX001-2",
+            "isbn_livre": "1001",
+            "statut": "disponible"
+        },
+        "EX001-3": {
+            "id_exemplaire": "EX001-3",
+            "isbn_livre": "1002",
+            "statut": "disponible"
+        },
+        "EX001-4": {
+            "id_exemplaire": "EX001-4",
+            "isbn_livre": "1003",
+            "statut": "disponible"
+        },
+        "EX001-5": {
+            "id_exemplaire": "EX001-5",
+            "isbn_livre": "1004",
+            "statut": "disponible"
+        },
+        "EX001-6": {
+            "id_exemplaire": "EX001-6",
+            "isbn_livre": "1005",
+            "statut": "disponible"
+        },
+        "EX001-7": {
+            "id_exemplaire": "EX001-7",
+            "isbn_livre": "4444",
+            "statut": "réservé"
+        },
+        "EX001-8": {
+            "id_exemplaire": "EX001-8",
+            "isbn_livre": "4444",
+            "statut": "disponible"
+        },
+        "EX001-9": {
+            "id_exemplaire": "EX001-9",
+            "isbn_livre": "1234",
+            "statut": "disponible"
+        }
+    },
+    "emprunts": {
+        "EMP-1": {
+            "id_emprunt": "EMP-1",
+            "id_exemplaire": "EX001-1",
+            "id_utilisateur": "ETU-1",
+            "date_emprunt": "2026-01-04",
+            "date_retour_prevue": "2026-01-18",
+            "date_retour_effective": "None",
+            "est_actif": true
+        }
+    },
+    "reservations": {
+        "4444": []
+    }
+}
