@@ -4,3 +4,9 @@ Utilisateur : Professeur Tournesol (ID: ENS-3)
 Livre disponible : Le Petit Manuel du Testeur (ISBN: 4444)
 Action : Merci de passer à la bibliothèque pour récupérer votre exemplaire.
 ----------------------------------------
+--- NOTIFICATION DE DISPONIBILITÉ ---
+Date : 2026-01-06
+Utilisateur : User2 (ID: ETU-6)
+Livre disponible : Matrix (ISBN: 333)
+Action : Merci de passer à la bibliothèque pour récupérer votre exemplaire.
+----------------------------------------

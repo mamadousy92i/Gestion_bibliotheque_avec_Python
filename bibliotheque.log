@@ -12,3 +12,62 @@
 [2026-01-04 19:11:02] - RETOUR : Retour de l'emprunt ID: EMP-2
 [2026-01-04 19:16:17] - CATALOGUE : Ajout du livre LUCIFER (ISBN: 1234)
 [2026-01-04 19:16:23] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-9 pour le livre LUCIFER
+[2026-01-06 15:38:27] - RESERVATION : L'utilisateur ADM-1 a réservé le livre ISBN: 1123
+[2026-01-06 15:38:40] - EMPRUNT : L'utilisateur ADM-1 a pris l'exemplaire EX001-4
+[2026-01-06 15:41:52] - RETOUR : Retour de l'emprunt ID: EMP-3
+[2026-01-06 16:06:54] - UTILISATEUR : Nouvel utilisateur inscrit : Jean Etudiant (ID: ETU-1, Type: ETUDIANT)
+[2026-01-06 16:06:54] - UTILISATEUR : Nouvel utilisateur inscrit : Prof Tournesol (ID: ENS-2, Type: ENSEIGNANT)
+[2026-01-06 16:06:54] - UTILISATEUR : Nouvel utilisateur inscrit : Admin Chef (ID: ADM-3, Type: ADMIN)
+[2026-01-06 16:06:54] - CATALOGUE : Ajout du livre Le Petit Prince (ISBN: 978-0123456789)
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-1 pour le livre Le Petit Prince
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-2 pour le livre Le Petit Prince
+[2026-01-06 16:06:54] - CATALOGUE : Ajout du livre Python Avancé (ISBN: 111)
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-3 pour le livre Python Avancé
+[2026-01-06 16:06:54] - UTILISATEUR : Nouvel utilisateur inscrit : Alice (ID: ETU-4, Type: ETUDIANT)
+[2026-01-06 16:06:54] - CATALOGUE : Ajout du livre Dune (ISBN: 222)
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-4 pour le livre Dune
+[2026-01-06 16:06:54] - EMPRUNT : L'utilisateur ETU-4 a pris l'exemplaire EX001-4
+[2026-01-06 16:06:54] - CATALOGUE : Ajout du livre Book 0 (ISBN: ISBN-0)
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-5 pour le livre Book 0
+[2026-01-06 16:06:54] - EMPRUNT : L'utilisateur ETU-4 a pris l'exemplaire EX001-5
+[2026-01-06 16:06:54] - CATALOGUE : Ajout du livre Book 1 (ISBN: ISBN-1)
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-6 pour le livre Book 1
+[2026-01-06 16:06:54] - EMPRUNT : L'utilisateur ETU-4 a pris l'exemplaire EX001-6
+[2026-01-06 16:06:54] - CATALOGUE : Ajout du livre Book 2 (ISBN: ISBN-2)
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-7 pour le livre Book 2
+[2026-01-06 16:06:54] - UTILISATEUR : Nouvel utilisateur inscrit : User1 (ID: ETU-5, Type: ETUDIANT)
+[2026-01-06 16:06:54] - UTILISATEUR : Nouvel utilisateur inscrit : User2 (ID: ETU-6, Type: ETUDIANT)
+[2026-01-06 16:06:54] - CATALOGUE : Ajout du livre Matrix (ISBN: 333)
+[2026-01-06 16:06:54] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-8 pour le livre Matrix
+[2026-01-06 16:06:54] - EMPRUNT : L'utilisateur ETU-5 a pris l'exemplaire EX001-8
+[2026-01-06 16:09:14] - UTILISATEUR : Nouvel utilisateur inscrit : Jean Etudiant (ID: ETU-1, Type: ETUDIANT)
+[2026-01-06 16:09:14] - UTILISATEUR : Nouvel utilisateur inscrit : Prof Tournesol (ID: ENS-2, Type: ENSEIGNANT)
+[2026-01-06 16:09:15] - UTILISATEUR : Nouvel utilisateur inscrit : Admin Chef (ID: ADM-3, Type: ADMIN)
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Le Petit Prince (ISBN: 978-0123456789)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-1 pour le livre Le Petit Prince
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-2 pour le livre Le Petit Prince
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Python Avancé (ISBN: 111)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-3 pour le livre Python Avancé
+[2026-01-06 16:09:15] - UTILISATEUR : Nouvel utilisateur inscrit : Alice (ID: ETU-4, Type: ETUDIANT)
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Dune (ISBN: 222)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-4 pour le livre Dune
+[2026-01-06 16:09:15] - EMPRUNT : L'utilisateur ETU-4 a pris l'exemplaire EX001-4
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Book 0 (ISBN: ISBN-0)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-5 pour le livre Book 0
+[2026-01-06 16:09:15] - EMPRUNT : L'utilisateur ETU-4 a pris l'exemplaire EX001-5
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Book 1 (ISBN: ISBN-1)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-6 pour le livre Book 1
+[2026-01-06 16:09:15] - EMPRUNT : L'utilisateur ETU-4 a pris l'exemplaire EX001-6
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Book 2 (ISBN: ISBN-2)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-7 pour le livre Book 2
+[2026-01-06 16:09:15] - UTILISATEUR : Nouvel utilisateur inscrit : User1 (ID: ETU-5, Type: ETUDIANT)
+[2026-01-06 16:09:15] - UTILISATEUR : Nouvel utilisateur inscrit : User2 (ID: ETU-6, Type: ETUDIANT)
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Matrix (ISBN: 333)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-8 pour le livre Matrix
+[2026-01-06 16:09:15] - EMPRUNT : L'utilisateur ETU-5 a pris l'exemplaire EX001-8
+[2026-01-06 16:09:15] - RESERVATION : L'utilisateur ETU-6 a réservé le livre ISBN: 333
+[2026-01-06 16:09:15] - RETOUR : Retour de l'emprunt ID: EMP-4
+[2026-01-06 16:09:15] - UTILISATEUR : Nouvel utilisateur inscrit : Retardataire (ID: ETU-7, Type: ETUDIANT)
+[2026-01-06 16:09:15] - CATALOGUE : Ajout du livre Time (ISBN: 444)
+[2026-01-06 16:09:15] - EXEMPLAIRE : Nouvel exemplaire créé : EX001-9 pour le livre Time
+[2026-01-06 16:09:15] - EMPRUNT : L'utilisateur ETU-7 a pris l'exemplaire EX001-9
