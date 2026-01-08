@@ -140,14 +140,17 @@ def creer_compte_interactif(biblio):
     biblio.ajouter_utilisateur(u)
     return u
 
-def menu_recherche_simplifie(biblio):
+def rechercher_livres_texte(biblio):
+    """Recherche avancée pour interface texte."""
     while True:
-        print("\n--- RECHERCHE & CONSULTATION ---")
-        print("1. Rechercher un livre")
-        print("2. Lister tout le catalogue")
+        print("\n--- RECHERCHE AVANCÉE ---")
+        print("1. Par mot-clé (Titre, Auteur, ISBN)")
+        print("2. Par disponibilité (Statut)")
         print("3. Retour")
         choix = input("Votre choix : ")
+        
         if choix == "3": break
+        
         if choix == "1":
             term = saisir_entree("Terme de recherche")
             if not term: continue
@@ -158,8 +161,33 @@ def menu_recherche_simplifie(biblio):
                     dispos = [e for e in tous if e.statut.value == "disponible"]
                     print(f"[{l.isbn}] {l.titre} - {l.auteur} | Dispo: {len(dispos)}/{len(tous)}")
             else: print("Aucun résultat.")
+            input("Appuyez sur Entrée...")
+
         elif choix == "2":
-            lister_livres(biblio)
+            print("\nStatuts disponibles :")
+            for i, st in enumerate(STATUTS, 1):
+                print(f"{i}. {st}")
+            
+            try:
+                idx = int(input("Choix du statut (N°) : ")) - 1
+                if 0 <= idx < len(STATUTS):
+                    statut_choisi = STATUTS[idx]
+                    found = False
+                    print(f"\n--- LIVRES AYANT DES EXEMPLAIRES '{statut_choisi.upper()}' ---")
+                    for livre in biblio.catalogue.values():
+                        # On cherche les exemplaires de ce livre qui ont ce statut
+                        exs = [e for e in biblio.exemplaires.values() 
+                              if e.livre.isbn == livre.isbn and e.statut.value == statut_choisi]
+                        if exs:
+                            print(f"[{livre.isbn}] {livre.titre} | {len(exs)} exemplaire(s)")
+                            found = True
+                    if not found: print(f"Aucun exemplaire trouvé avec le statut '{statut_choisi}'.")
+                else: print("Choix invalide.")
+            except ValueError: print("Saisie invalide.")
+            input("Appuyez sur Entrée...")
+
+def menu_recherche_simplifie(biblio):
+    rechercher_livres_texte(biblio)
 
 def menu_mes_emprunts(biblio, uid):
     while True:
@@ -170,6 +198,18 @@ def menu_mes_emprunts(biblio, uid):
                 print(f"- {e.exemplaire.livre.titre} (ID: {e.id_emprunt}) - Retour prévu : {e.date_retour_prevue}")
         else:
             print("Aucun emprunt en cours.")
+            
+        print("\n--- MES RÉSERVATIONS EN ATTENTE ---")
+        found_res = False
+        if uid in [u.id_utilisateur for u in biblio.utilisateur.values()]:     
+            for isbn, reservations in biblio.reservations.items():
+                for res in reservations:
+                    if res.utilisateur.id_utilisateur == uid:
+                        print(f"- [RÉSERVÉ] {res.livre.titre} (ISBN: {res.livre.isbn}) - Date : {res.date_reservation}")
+                        found_res = True
+        
+        if not found_res:
+            print("Aucune réservation en cours.")
         
         print("\n1. Réserver un livre")
         print("2. Retour")
@@ -276,7 +316,7 @@ def main():
                 print("1. Lister les livres")
                 print("2. Emprunter un livre")
                 print("3. Rechercher un livre")
-                print("4. Mes Emprunts en cours")
+                print("4. Mes Emprunts & Réservations")
                 print("5. Mon Profil")
                 print("6. Déconnexion")
             else: # INVITE
@@ -385,15 +425,7 @@ def gestion_livres(biblio):
                 print(biblio.supprimer_livre(isbn))
 
         elif choix == "5":
-            terme = saisir_entree("Terme de recherche (Titre, Auteur, ISBN)")
-            if not terme: continue
-            resultats = biblio.recherche_par_mot_clé(terme)
-            if resultats:
-                for l in resultats:
-                    tous = [e for e in biblio.exemplaires.values() if e.livre.isbn == l.isbn]
-                    dispos = [e for e in tous if e.statut.value == "disponible"]
-                    print(f"[{l.isbn}] {l.titre} - {l.auteur} | Dispo: {len(dispos)}/{len(tous)}")
-            else: print("Aucun résultat.")
+            rechercher_livres_texte(biblio)
 
 
 def gestion_utilisateurs(biblio):

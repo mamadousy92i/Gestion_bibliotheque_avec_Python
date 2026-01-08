@@ -260,7 +260,7 @@ class Bibliotheque:
             raise ValueError("Désolé, ce livre est introuvable.")
         
         if exemplaire.statut != StatutLivre.DISPONIBLE:
-            return f"Ah mince, le livre est déjà {exemplaire.statut}. Faudra repasser !"
+            return f"Ah mince, le livre est déjà {exemplaire.statut.value}. Faudra repasser !"
         else:
             # On vérifie si l'utilisateur n'a pas déjà trop abusé de son quota
             if user.peut_emprunter_livre():

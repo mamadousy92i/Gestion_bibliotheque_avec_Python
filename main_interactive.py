@@ -218,7 +218,7 @@ def main():
                     Choice("liste", "🗂️ Lister les livres"),
                     Choice("emprunt", "🤝 Emprunter un livre"),
                     Choice("recherche", "🔍 Rechercher un livre"),
-                    Choice("mes_emprunts", "📖 Mes Emprunts en cours"),
+                    Choice("mes_emprunts", "📖 Mes Emprunts & Réservations"),
                     Choice("profil", "👤 Mon Profil"),
                 ]
             else: # INVITE
@@ -258,26 +258,8 @@ def main():
                 afficher_profil(biblio, current_user_id)
 
 def menu_recherche_simplifie(biblio):
-    while True:
-        effacer_ecran()
-        choix = inquirer.select(
-            message="Recherche & Consultation :",
-            choices=[
-                Choice("rechercher", "🔍 Rechercher un livre"),
-                Choice("retour", "↩️ Retour"),
-            ]
-        ).execute()
-        if choix == "retour": break
-        if choix == "rechercher":
-            terme = inquirer.text(message="Terme de recherche :").execute()
-            resultats = biblio.recherche_par_mot_clé(terme)
-            if resultats:
-                for livre in resultats:
-                    tous = [e for e in biblio.exemplaires.values() if e.livre.isbn == livre.isbn]
-                    dispos = [e for e in tous if e.statut.value == "disponible"]
-                    print(f"[{livre.isbn}] {livre.titre} - {livre.auteur} | Dispo: {len(dispos)}/{len(tous)}")
-            else: print("Aucun résultat.")
-            input("\nAppuyez sur Entrée...")
+    """Accès direct à la recherche avancée."""
+    rechercher_livres_interactif(biblio)
 
 def menu_mes_emprunts(biblio, uid):
     while True:
@@ -286,12 +268,27 @@ def menu_mes_emprunts(biblio, uid):
         user = biblio.rechercher_utilisateur(uid)
         
         # Affichage emprunts
+        print("-" * 20)
+        print("--- MES EMPRUNTS EN COURS ---")
         active = [e for e in biblio.emprunt_en_cour.values() if e.utilisateur.id_utilisateur == uid]
         if active:
             for e in active:
                 print(f"📖 {e.exemplaire.livre.titre} (ID: {e.id_emprunt}) - Retour prévu : {e.date_retour_prevue}")
         else:
             print("Aucun emprunt en cours.")
+
+        print("\n--- MES RÉSERVATIONS EN ATTENTE ---")
+        found_res = False
+        if uid in [u.id_utilisateur for u in biblio.utilisateur.values()]:     
+            # On cherche dans toutes les files d'attente
+            for isbn, reservations in biblio.reservations.items():
+                for res in reservations:
+                    if res.utilisateur.id_utilisateur == uid:
+                        print(f"🕒 [RÉSERVÉ] {res.livre.titre} (ISBN: {res.livre.isbn}) - Date : {res.date_reservation}")
+                        found_res = True
+        
+        if not found_res:
+            print("Aucune réservation en cours.")
         
         print("-" * 20)
         choice = inquirer.select(
@@ -381,6 +378,53 @@ def effectuer_emprunt_interactif(biblio, id_utilisateur=None):
 
 # ----------------------------- Livres -----------------------------
 
+def rechercher_livres_interactif(biblio):
+    """Fonction de recherche avancée partagée (Admin & User)."""
+    while True:
+        effacer_ecran()
+        mode_recherche = inquirer.select(
+            message="Recherche & Consultation :",
+            choices=[
+                Choice("mc", "🔤 Par mot-clé (Titre, Auteur, ISBN)"),
+                Choice("statut", "📦 Par disponibilité (statut)"),
+                Choice("retour", "↩️ Retour"),
+            ],
+            default="mc",
+        ).execute()
+
+        if mode_recherche == "retour":
+            break
+
+        if mode_recherche == "mc":
+            terme = inquirer.text(message="Terme de recherche (Titre, Auteur, ISBN...) :").execute()
+            resultats = biblio.recherche_par_mot_clé(terme)
+            if resultats:
+                for livre in resultats:
+                    tous = [e for e in biblio.exemplaires.values() if e.livre.isbn == livre.isbn]
+                    dispos = [e for e in tous if e.statut.value == "disponible"]
+                    print(f"[{livre.isbn}] {livre.titre} - {livre.auteur} | Dispo: {len(dispos)}/{len(tous)}")
+            else:
+                print("Aucun résultat.")
+            input("\nAppuyez sur Entrée...")
+
+        else: # par statut
+            statut = inquirer.select(message="Choisir le statut :", choices=STATUTS + ["↩️ Retour"]).execute()
+            if statut == "↩️ Retour":
+                continue
+            
+            correspondances = []
+            for livre in biblio.catalogue.values():
+                exs = lister_exemplaire_isbn(biblio, livre.isbn, filtre_statut=statut)
+                if exs:
+                    correspondances.append((livre, exs))
+            
+            if correspondances:
+                for livre, exs in correspondances:
+                    print(f"[{livre.isbn}] {livre.titre} - {livre.auteur} | Exemplaires avec statut {statut} : {len(exs)}")
+            else:
+                print("Aucun livre ne correspond à ce statut.")
+            input("\nAppuyez sur Entrée...")
+
 def gestion_livres(biblio):
     while True:
         effacer_ecran()
@@ -407,7 +451,7 @@ def gestion_livres(biblio):
 
             # Ajout d'exemplaires immédiatement (avec quantité)
             if inquirer.confirm(message="Souhaitez-vous ajouter des exemplaires de ce livre maintenant ?", default=True).execute():
-                cnt = ask_count()
+                cnt = demander_quantite()
                 if cnt is not None:
                     for _ in range(cnt):
                         print(biblio.ajouter_exemplaire(isbn))
@@ -415,18 +459,18 @@ def gestion_livres(biblio):
                     print("↩️ Retour sans ajout d'exemplaires.")
             input("\nAppuyez sur Entrée pour continuer...")
 
-        elif choice == "add_ex":
-            isbn = ask_isbn_or_select(biblio, message="Ajouter des exemplaires :")
+        elif choix == "ajouter_ex":
+            isbn = demander_isbn_ou_selectionner(biblio, message="Ajouter des exemplaires :")
             if isbn is None:
                 continue
-            cnt = ask_count()
+            cnt = demander_quantite()
             if cnt is None:
                 continue
             for _ in range(cnt):
                 print(biblio.ajouter_exemplaire(isbn))
             input("\nAppuyez sur Entrée pour continuer...")
 
-        elif choice == "edit":
+        elif choix == "modifier":
             act = inquirer.select(
                 message="Modifier un livre :",
                 choices=[
@@ -441,7 +485,7 @@ def gestion_livres(biblio):
 
             if act == "type":
                 isbn = inquirer.text(message="ISBN du livre à modifier :", validate=EmptyInputValidator()).execute()
-                if not get_book_by_isbn(biblio, isbn):
+                if not obtenir_livre_isbn(biblio, isbn):
                     print("[ERREUR] ISBN introuvable.")
                     input("\nAppuyez sur Entrée pour continuer...")
                     continue
@@ -515,44 +559,7 @@ def gestion_livres(biblio):
             input("\nAppuyez sur Entrée pour continuer...")
 
         elif choix == "rechercher":
-            mode_recherche = inquirer.select(
-                message="Recherche :",
-                choices=[
-                    Choice("mc", "🔤 Par mot-clé (Titre, Auteur, ISBN)"),
-                    Choice("statut", "📦 Par disponibilité (statut)"),
-                    Choice("retour", "↩️ Retour"),
-                ],
-                default="mc",
-            ).execute()
-            if mode_recherche == "retour":
-                continue
-
-            if mode_recherche == "mc":
-                terme = inquirer.text(message="Terme de recherche (Titre, Auteur, ISBN...) :").execute()
-                resultats = biblio.recherche_par_mot_clé(terme)
-                if resultats:
-                    for livre in resultats:
-                        tous = [e for e in biblio.exemplaires.values() if e.livre.isbn == livre.isbn]
-                        dispos = [e for e in tous if e.statut.value == "disponible"]
-                        print(f"[{livre.isbn}] {livre.titre} - {livre.auteur} | Dispo: {len(dispos)}/{len(tous)}")
-                else:
-                    print("Aucun résultat.")
-            else:
-                statut = inquirer.select(message="Choisir le statut :", choices=STATUTS + ["↩️ Retour"]).execute()
-                if statut == "↩️ Retour":
-                    continue
-                correspondances = []
-                for livre in biblio.catalogue.values():
-                    exs = lister_exemplaire_isbn(biblio, livre.isbn, filtre_statut=statut)
-                    if exs:
-                        correspondances.append((livre, exs))
-                if correspondances:
-                    for livre, exs in correspondances:
-                        print(f"[{livre.isbn}] {livre.titre} - {livre.auteur} | Exemplaires avec statut {statut} : {len(exs)}")
-                else:
-                    print("Aucun livre ne correspond à ce statut.")
-            input("\nAppuyez sur Entrée pour continuer...")
-
+            rechercher_livres_interactif(biblio)
 
         elif choix == "retour":
             break
@@ -803,19 +810,19 @@ def gestion_emprunts(biblio):
             print(biblio.renouveler_livre(id_emprunt))
             input("\nAppuyez sur Entrée pour continuer...")
 
-        elif choice == "reserve":
+        elif choix == "reserve":
             uid = inquirer.text(message="ID utilisateur :", validate=EmptyInputValidator()).execute()
-            user = get_user_by_id(biblio, uid)
+            user = obtenir_utilisateur_id(biblio, uid)
             if not user:
                 print("[ERREUR] Utilisateur introuvable.")
                 input("\nAppuyez sur Entrée pour continuer...")
                 continue
 
-            isbn = ask_isbn_or_select(biblio, message="Réservation - choisir le livre :")
+            isbn = demander_isbn_ou_selectionner(biblio, message="Réservation - choisir le livre :")
             if not isbn:
                 continue
 
-            exs = list_exemplaires_by_isbn(biblio, isbn)
+            exs = lister_exemplaire_isbn(biblio, isbn)
             for e in exs:
                 print(f" -> {e.id_exemplaire} [{e.statut.value}]")
 

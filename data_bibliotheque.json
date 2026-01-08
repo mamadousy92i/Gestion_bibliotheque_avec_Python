@@ -34,7 +34,7 @@
             "anne_publication": 1885,
             "categorie": "Classique",
             "statut": "disponible",
-            "nb_emprunts_total": 0
+            "nb_emprunts_total": 1
         },
         "1004": {
             "isbn": "1004",
@@ -125,8 +125,18 @@
             "type_utilisateur": "ADMIN",
             "service": "Direction",
             "liste_emprunt_en_cour": [],
-            "historique_emprunts": [],
-            "nb_emprunts_total": 0
+            "historique_emprunts": [
+                {
+                    "id_emprunt": "EMP-3",
+                    "id_exemplaire": "EX001-4",
+                    "id_utilisateur": "ADM-1",
+                    "date_emprunt": "2026-01-06",
+                    "date_retour_prevue": "2026-01-20",
+                    "date_retour_effective": "2026-01-06",
+                    "est_actif": true
+                }
+            ],
+            "nb_emprunts_total": 1
         }
     },
     "exemplaires": {
@@ -188,6 +198,14 @@
         }
     },
     "reservations": {
-        "4444": []
+        "4444": [],
+        "1123": [
+            {
+                "id_reservation": "RES-1",
+                "id_utilisateur": "ADM-1",
+                "isbn": "1123",
+                "date_demande": "2026-01-06"
+            }
+        ]
     }
 }
